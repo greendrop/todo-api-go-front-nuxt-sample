@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  front:
+    build: ./docker/front
+    environment:
+      USER_ID: ${USER_ID}
+      GROUP_ID: ${GROUP_ID}
+      HOST: 0.0.0.0
+    volumes:
+      - .:/app
+      - home_volume:/home/docker
+    working_dir: /app
+    ports:
+      - '3000:3000'
+    hostname: front
+    entrypoint: ./docker/front/docker-entrypoint.sh
+    command: yarn run dev
+    networks:
+      - default
+      - todo-api-go-sample_default
+
+networks:
+  todo-api-go-sample_default:
+    external: true
+
+volumes:
+  home_volume:
+    driver: local
