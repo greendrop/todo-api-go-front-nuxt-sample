@@ -82,3 +82,6 @@ dist
 
 # direnv
 .envrc
+
+# dotenv
+.env
