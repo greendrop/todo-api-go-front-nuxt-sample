@@ -82,6 +82,9 @@ export default {
   methods: {
     showTask(task) {
       this.$router.push(`/tasks/${task.id}`)
+    },
+    editTask(task) {
+      this.$router.push(`/tasks/${task.id}/edit`)
     }
   }
 }

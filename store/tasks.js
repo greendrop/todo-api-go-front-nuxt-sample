@@ -46,9 +46,22 @@ export const actions = {
     commit('setCreateCompleted', false)
     const url = `${apiUrl.getWpApiBaseUrl()}/tasks`
     const params = { ...task }
-    console.log(params)
     await this.$axios.post(url, params).then(() => {
       commit('setCreateCompleted', true)
+    })
+  },
+  async updateTask({ commit }, { id, task }) {
+    commit('setUpdateCompleted', false)
+    const url = `${apiUrl.getWpApiBaseUrl()}/tasks/${id}`
+    console.log(id)
+    console.log(task)
+    const params = {
+      title: task.title,
+      description: task.description,
+      done: task.done
+    }
+    await this.$axios.put(url, params).then(() => {
+      commit('setUpdateCompleted', true)
     })
   }
 }

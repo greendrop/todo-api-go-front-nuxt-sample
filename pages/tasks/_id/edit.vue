@@ -40,12 +40,22 @@ export default {
       }
     }
   },
+  async asyncData(context) {
+    await context.store.dispatch('tasks/getTaskById', context.route.params.id)
+    let data = {
+      task: { ...context.store.getters['tasks/task'] }
+    }
+    return data
+  },
   methods: {
     submit() {
       this.$validator.validateAll().then(async result => {
         if (result) {
-          await this.$store.dispatch('tasks/createTask', this.task)
-          if (this.$store.getters['tasks/createCompleted']) {
+          await this.$store.dispatch('tasks/updateTask', {
+            id: this.$route.params.id,
+            task: this.task
+          })
+          if (this.$store.getters['tasks/updateCompleted']) {
             this.clear()
             this.$router.push('/tasks')
           }
