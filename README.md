@@ -1,22 +1,37 @@
 # todo-api-go-front-nuxt-sample
 
-> My finest Nuxt.js project
+GO言語を使用したAPI( https://github.com/greendrop/todo-api-go-sample )のフロントサンプルです。
 
-## Build Setup
+## 使用言語・ライブラリ
 
-``` bash
-# install dependencies
+- Vue.js
+- Nuxt.js
+
+## 環境構築アプリケーション
+
+- Docker
+- Docker Compose
+- direnv
+- git
+
+## セットアップ
+
+```shell
+$ git clone git@github.com:greendrop/todo-api-go-front-nuxt-sample.git
+$ cd todo-api-go-front-nuxt-sample
+$ vi .envrc
+$ direnv allow
+$ docker-compose pull
+$ docker-compose build
+$ docker-compose run --rm front bash
 $ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn run dev
-
-# build for production and launch server
-$ yarn run build
-$ yarn start
-
-# generate static project
-$ yarn run generate
+$ exit
+$ docker-compose up
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+### .envrc
+
+```
+export USER_ID=`id -u`
+export GROUP_ID=`id -g`
+```
