@@ -9,7 +9,9 @@
       <v-toolbar flat>
         <v-toolbar-title>Tasks</v-toolbar-title>
         <v-spacer />
-        <v-btn color="primary">New Item</v-btn>
+        <v-btn
+          color="primary"
+          to="/tasks/new">New Task</v-btn>
       </v-toolbar>
       <v-data-table
         :headers="taskHeaders"
