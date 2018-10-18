@@ -48,7 +48,7 @@
             </v-icon>
             <v-icon
               small
-              @click="deleteTaks(props.item)">
+              @click="deleteTask(props.item)">
               delete
             </v-icon>
           </td>
@@ -85,6 +85,15 @@ export default {
     },
     editTask(task) {
       this.$router.push(`/tasks/${task.id}/edit`)
+    },
+    async deleteTask(task) {
+      if (confirm('Are you sure?')) {
+        await this.$store.dispatch('tasks/deleteTask', task.id)
+        if (this.$store.getters['tasks/deleteCompleted']) {
+          await this.$store.dispatch('tasks/getTasks', this.$route.query)
+          this.tasks = this.$store.getters['tasks/tasks']
+        }
+      }
     }
   }
 }

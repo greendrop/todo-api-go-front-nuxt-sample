@@ -53,8 +53,6 @@ export const actions = {
   async updateTask({ commit }, { id, task }) {
     commit('setUpdateCompleted', false)
     const url = `${apiUrl.getWpApiBaseUrl()}/tasks/${id}`
-    console.log(id)
-    console.log(task)
     const params = {
       title: task.title,
       description: task.description,
@@ -62,6 +60,13 @@ export const actions = {
     }
     await this.$axios.put(url, params).then(() => {
       commit('setUpdateCompleted', true)
+    })
+  },
+  async deleteTask({ commit }, id) {
+    commit('setDeleteCompleted', false)
+    const url = `${apiUrl.getWpApiBaseUrl()}/tasks/${id}`
+    await this.$axios.delete(url).then(() => {
+      commit('setDeleteCompleted', true)
     })
   }
 }
