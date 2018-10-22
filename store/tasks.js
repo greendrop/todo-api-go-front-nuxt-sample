@@ -43,31 +43,43 @@ export const actions = {
     commit('setTask', response.task)
   },
   async createTask({ commit }, task) {
-    commit('setCreateCompleted', false)
     const url = `${apiUrl.getWpApiBaseUrl()}/tasks`
     const params = { ...task }
-    await this.$axios.post(url, params).then(() => {
-      commit('setCreateCompleted', true)
-    })
+    await this.$axios
+      .post(url, params)
+      .then(() => {
+        commit('setCreateCompleted', true)
+      })
+      .catch(() => {
+        commit('setCreateCompleted', false)
+      })
   },
   async updateTask({ commit }, { id, task }) {
-    commit('setUpdateCompleted', false)
     const url = `${apiUrl.getWpApiBaseUrl()}/tasks/${id}`
     const params = {
       title: task.title,
       description: task.description,
       done: task.done
     }
-    await this.$axios.put(url, params).then(() => {
-      commit('setUpdateCompleted', true)
-    })
+    await this.$axios
+      .put(url, params)
+      .then(() => {
+        commit('setUpdateCompleted', true)
+      })
+      .catch(() => {
+        commit('setUpdateCompleted', false)
+      })
   },
   async deleteTask({ commit }, id) {
-    commit('setDeleteCompleted', false)
     const url = `${apiUrl.getWpApiBaseUrl()}/tasks/${id}`
-    await this.$axios.delete(url).then(() => {
-      commit('setDeleteCompleted', true)
-    })
+    await this.$axios
+      .delete(url)
+      .then(() => {
+        commit('setDeleteCompleted', true)
+      })
+      .catch(() => {
+        commit('setDeleteCompleted', false)
+      })
   }
 }
 
