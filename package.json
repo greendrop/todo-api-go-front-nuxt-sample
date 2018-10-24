@@ -31,7 +31,8 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.{js,vue}",
-      "!**/node_modules/**"
+      "!**/node_modules/**",
+      "!**/coverage/**"
     ],
     "coverageReporters": [
       "html",
@@ -69,6 +70,7 @@
     "prettier": "1.14.3",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
+    "vue-i18n": "^8.2.1",
     "vue-jest": "^3.0.0"
   }
 }
